@@ -1,0 +1,55 @@
+Customers {
+	id integer pk increments > Tickets.customerid
+	firstname string
+	lastname string
+	email string
+	phonenumber string
+}
+
+Movies {
+	id integer pk increments > Sessions.movieid
+	title integer
+	releasedate date
+	duration integer
+	description text
+}
+
+Actors {
+	id integer pk increments >* Movies.id
+	firstname string
+	lastname string
+}
+
+Genres {
+	id integer pk increments >* Movies.id
+	genrename string
+}
+
+Sessions {
+	id integer pk increments >* Tickets.sessionid
+	movieid integer
+	hallid integer
+	startime integer
+	endtime integer
+}
+
+Halls {
+	id integer pk increments > Seats.seatnumber
+	hallname string >* Sessions.hallid
+	capacity integer
+}
+
+Seats {
+	id integer pk increments
+	hallid integer
+	seatnumber integer >* Tickets.seatid
+	rownumber integer
+}
+
+Tickets {
+	id integer pk increments
+	customerid integer
+	sessionid integer
+	seatid integer
+}
+
